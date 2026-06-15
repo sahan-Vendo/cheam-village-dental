@@ -340,6 +340,49 @@ header.on-dark .burger span{background:var(--porcelain)}
 
 /* ============ PROCESS ============ */
 .process{padding:clamp(110px,15vh,190px) 0}
+.process.wheel-mode{padding:clamp(70px,9vh,120px) 0 0;min-height:100svh;display:flex;flex-direction:column}
+.process.wheel-mode .process-grid{display:none}
+.process.wheel-mode .section-head{margin-bottom:clamp(20px,4vh,48px)}
+.drag-hint{display:none}
+.process.wheel-mode .drag-hint{display:block}
+.wheel-stage{
+  position:relative;display:none;height:calc(100svh - 330px);min-height:380px;
+  overflow:hidden;cursor:grab;touch-action:pan-y;user-select:none;
+  -webkit-user-select:none;width:100%;
+}
+.process.wheel-mode .wheel-stage{display:block}
+.wheel-stage.dragging{cursor:grabbing}
+.wheel{position:absolute;left:50%;top:0;width:0;height:0;will-change:transform}
+.wtick{
+  position:absolute;left:0;top:0;width:1.5px;height:26px;background:var(--line);
+  transform-origin:0 0;
+}
+.wtick.major{height:42px;background:rgba(23,20,17,.28)}
+.wtick.fill{background:var(--sage)}
+.wcard{position:absolute;left:0;top:0;pointer-events:auto;cursor:pointer}
+.wcard-in{
+  width:min(340px,66vw);text-align:center;display:flex;flex-direction:column;gap:14px;align-items:center;
+  opacity:.28;transform:scale(.88);transition:opacity .5s var(--ease),transform .5s var(--ease);
+}
+.wcard.on{cursor:default}
+.wcard.on .wcard-in{opacity:1;transform:scale(1)}
+.wno{
+  font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(52px,6vw,84px);line-height:1;
+  color:transparent;-webkit-text-stroke:1px var(--ink);transition:color .4s,-webkit-text-stroke .4s;
+}
+.wcard.on .wno{color:var(--sage);-webkit-text-stroke:1px var(--sage)}
+.wcard h3{font-family:var(--serif);font-weight:400;font-size:clamp(20px,2.2vw,27px);line-height:1.25}
+.wcard p{font-size:13.5px;line-height:1.8;color:var(--ink-soft);max-width:320px}
+.wheel-counter{
+  position:absolute;left:0;top:2px;
+  font-family:var(--serif);font-weight:300;font-size:24px;font-variant-numeric:tabular-nums;
+  display:flex;align-items:baseline;
+}
+.wheel-counter i{font-style:normal;font-size:13px;opacity:.45}
+@media(max-width:640px){
+  .wheel-stage{height:calc(100svh - 300px);min-height:340px}
+  .wcard p{font-size:12.5px;max-width:250px}
+}
 .process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 .step{
   background:var(--porcelain);padding:clamp(36px,4vw,56px) clamp(28px,3vw,44px) clamp(44px,5vw,64px);
@@ -709,6 +752,34 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
           <p class="eyebrow" data-fade>How it works</p>
           <h2 class="h-display" data-lines>Three unhurried <em>steps</em></h2>
         </div>
+        <span class="count drag-hint" data-fade>( scroll, or drag the dial )</span>
+      </div>
+      <div class="wheel-stage" id="wheelStage">
+        <div class="wheel" id="wheel">
+          <div class="wticks" id="wticks" aria-hidden="true"></div>
+          <article class="wcard on" data-i="0">
+            <div class="wcard-in">
+              <span class="wno">01</span>
+              <h3>We listen first</h3>
+              <p>A relaxed consultation — no drill in sight. We learn what you want, what worries you, and take a full digital map of your smile.</p>
+            </div>
+          </article>
+          <article class="wcard" data-i="1">
+            <div class="wcard-in">
+              <span class="wno">02</span>
+              <h3>A plan, in plain English</h3>
+              <p>Every option, honestly explained with clear pricing and no pressure. You decide the pace; we put it in writing.</p>
+            </div>
+          </article>
+          <article class="wcard" data-i="2">
+            <div class="wcard-in">
+              <span class="wno">03</span>
+              <h3>Gentle treatment, lifelong care</h3>
+              <p>Meticulous treatment in calm surroundings, then a maintenance plan so your results last decades — not months.</p>
+            </div>
+          </article>
+        </div>
+        <div class="wheel-counter"><span id="wNum">01</span><i>&nbsp;/&nbsp;03</i></div>
       </div>
       <div class="process-grid">
         <div class="step" data-fade>
@@ -845,6 +916,7 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
   var lenis = null;
   if(window.Lenis && !reduced){
     lenis = new Lenis({ lerp:.11, smoothWheel:true });
+    window.__lenis = lenis;
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(function(t){ lenis.raf(t*1000); });
     gsap.ticker.lagSmoothing(0);
@@ -1105,6 +1177,84 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
       onUpdate:function(){ el.textContent = dec? o.v.toFixed(dec) : Math.round(o.v).toLocaleString(); },
       scrollTrigger:{trigger:el,start:'top 88%'}});
   });
+
+  /* ---------- process wheel dial ---------- */
+  var processSec = document.querySelector('.process');
+  var wheelStage = document.getElementById('wheelStage');
+  if(!reduced && wheelStage && processSec){
+    processSec.classList.add('wheel-mode');
+    var wheelEl = document.getElementById('wheel');
+    var wticksWrap = document.getElementById('wticks');
+    var wcards = gsap.utils.toArray('.wcard');
+    var wNum = document.getElementById('wNum');
+    var tickEls=[], tickAngles=[];
+    for(var ta=-66; ta<=66; ta+=1.65){
+      var tk=document.createElement('span');
+      tk.className='wtick'+(tickEls.length%5===0?' major':'');
+      wticksWrap.appendChild(tk); tickEls.push(tk); tickAngles.push(ta);
+    }
+    var R, Rtick, stepDeg, rot={r:0}, wActive=0;
+    function applyWheel(){
+      wheelEl.style.transform = 'rotate('+rot.r+'deg)';
+      var act = Math.max(0, Math.min(wcards.length-1, Math.round(-rot.r/stepDeg)));
+      if(act!==wActive){
+        wActive=act; wNum.textContent='0'+(act+1);
+        wcards.forEach(function(c,i){ c.classList.toggle('on', i===act); });
+      }
+      tickEls.forEach(function(t,i){ t.classList.toggle('fill', tickAngles[i]+rot.r <= 0.01); });
+    }
+    function wheelLayout(){
+      var mob = innerWidth<700;
+      R = mob ? Math.max(560, innerWidth*1.45) : Math.min(1100, Math.max(820, innerWidth*0.78));
+      Rtick = R - (mob?115:140);
+      stepDeg = mob ? 30 : 21;
+      wheelEl.style.top = (wheelStage.offsetHeight*0.44 + R) + 'px';
+      tickEls.forEach(function(t,i){
+        t.style.transform = 'rotate('+tickAngles[i]+'deg) translateY('+(-Rtick)+'px)';
+      });
+      wcards.forEach(function(c,i){
+        c.style.transform = 'rotate('+(i*stepDeg)+'deg) translateY('+(-R)+'px) translate(-50%,-50%)';
+      });
+      applyWheel();
+    }
+    wheelLayout();
+    var wheelTl = gsap.timeline({
+      scrollTrigger:{
+        trigger:processSec, start:'top top', end:'+=220%', pin:true, scrub:.5,
+        anticipatePin:1, invalidateOnRefresh:true,
+        snap:{snapTo:[0,.5,1], duration:{min:.25,max:.7}, ease:'power2.out', delay:.1}
+      }
+    });
+    wheelTl.to(rot,{r:function(){ return -stepDeg*(wcards.length-1); },ease:'none',onUpdate:applyWheel});
+    ScrollTrigger.addEventListener('refreshInit', wheelLayout);
+
+    /* drag to rotate */
+    var dragging=false, dragX=0, dragScroll=0, dragMoved=0;
+    wheelStage.addEventListener('pointerdown',function(e){
+      dragging=true; dragMoved=0; dragX=e.clientX; dragScroll=window.scrollY;
+      wheelStage.classList.add('dragging');
+      try{ wheelStage.setPointerCapture(e.pointerId); }catch(_){}
+    });
+    wheelStage.addEventListener('pointermove',function(e){
+      if(!dragging) return;
+      var dx=e.clientX-dragX; dragMoved=Math.max(dragMoved,Math.abs(dx));
+      var st=wheelTl.scrollTrigger, span=st.end-st.start;
+      var y=Math.max(st.start,Math.min(st.end, dragScroll - dx*(span/(innerWidth*0.85))));
+      if(lenis) lenis.scrollTo(y,{immediate:true}); else window.scrollTo(0,y);
+    });
+    ['pointerup','pointercancel'].forEach(function(ev){
+      wheelStage.addEventListener(ev,function(){ dragging=false; wheelStage.classList.remove('dragging'); });
+    });
+    /* click an inactive step to travel to it */
+    wcards.forEach(function(c,i){
+      c.addEventListener('click',function(){
+        if(dragMoved>8 || i===wActive) return;
+        var st=wheelTl.scrollTrigger;
+        var y=st.start + (i/(wcards.length-1))*(st.end-st.start);
+        if(lenis) lenis.scrollTo(y,{duration:1.1}); else window.scrollTo({top:y,behavior:'smooth'});
+      });
+    });
+  }
 
   /* duplicate marquee for seamless loop */
   var track=document.getElementById('marqueeTrack');
