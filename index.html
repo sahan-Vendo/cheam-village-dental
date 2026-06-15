@@ -742,9 +742,9 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
         <div class="arch-wrap">
         <div class="hero-arch" data-parallax>
           <div class="arch-slides">
-            <img class="slide-img active" src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=900&auto=format&fit=crop" alt="The calm, light-filled treatment room at Cheam Village Dental Studios" />
-            <img class="slide-img" src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?q=80&w=900&auto=format&fit=crop" alt="A dentist gently examining a patient" loading="lazy" />
-            <img class="slide-img" src="https://images.unsplash.com/photo-1545167622-3a6ac756afa4?q=80&w=900&auto=format&fit=crop" alt="A bright, confident smile" loading="lazy" />
+            <img class="slide-img active" src="images/hero-studio.jpg" alt="The calm, warm reception of Cheam Village Dental Studios" />
+            <img class="slide-img" src="images/hero-invisalign.jpg" alt="A patient holding a clear Invisalign aligner" loading="lazy" />
+            <img class="slide-img" src="images/hero-whitening.jpg" alt="A bright, confident, naturally white smile" loading="lazy" />
           </div>
         </div>
         <div class="badge-rotor" aria-hidden="true">
@@ -763,7 +763,7 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
       </div>
     </div>
     <div class="hero-expand" id="heroExpand" aria-hidden="true">
-      <img class="expand-img" id="expandImg" src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1600&auto=format&fit=crop" alt="" />
+      <img class="expand-img" id="expandImg" src="images/hero-studio.jpg" alt="" />
       <div class="expand-tint"></div>
       <div class="expand-content">
         <p class="expand-kicker">Cheam Village · Dental Studios</p>
@@ -1228,7 +1228,7 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
       gsap.fromTo(next,{opacity:0,scale:1.1},{opacity:1,scale:1,duration:1.1,ease:'power2.out',overwrite:'auto',
         onComplete:function(){ slideImgs.forEach(function(im,j){ if(j!==curSlide) gsap.set(im,{opacity:0}); }); }});
       var xImg = document.getElementById('expandImg');
-      if(xImg) xImg.src = next.src.replace('w=900','w=1600');
+      if(xImg) xImg.src = next.src;
       gsap.timeline()
         .to(rotWord,{yPercent:-120,duration:.4,ease:'power2.in',
           onComplete:function(){ rotWord.textContent = slideWords[curSlide]; }})
