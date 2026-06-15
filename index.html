@@ -443,19 +443,25 @@ header.on-dark .burger span{background:var(--porcelain)}
 .gal-cursor.show{opacity:1}
 /* before / after trail card */
 .ba-card{
-  position:absolute;top:0;left:0;width:clamp(160px,16vw,236px);aspect-ratio:3/3.7;
+  position:absolute;top:0;left:0;width:clamp(168px,16.5vw,244px);aspect-ratio:4/5;
   border-radius:10px;overflow:hidden;pointer-events:none;will-change:transform,opacity;z-index:2;
   box-shadow:0 30px 60px -24px rgba(0,0,0,.7);background:#0d0b0a;
 }
 .ba-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.ba-before{position:absolute;inset:0;width:50%;overflow:hidden;border-right:1.5px solid var(--sage-soft)}
-.ba-before img{width:200%;max-width:none;filter:grayscale(1) brightness(.72) contrast(1.05)}
+.ba-cap{
+  position:absolute;left:0;right:0;bottom:0;display:none;z-index:2;
+  padding:32px 12px 11px;text-align:center;
+  font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--porcelain);
+  background:linear-gradient(to top, rgba(13,11,10,.85), transparent);
+}
 .ba-tag{
   position:absolute;z-index:2;font-size:8px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;
   color:var(--porcelain);background:rgba(23,20,17,.55);padding:4px 7px;border-radius:3px;backdrop-filter:blur(3px);
 }
 .ba-tag-b{top:9px;left:9px}
 .ba-tag-a{bottom:9px;right:9px;background:rgba(105,119,95,.78)}
+.gallery.static .ba-tag-a{top:9px;bottom:auto;right:9px}
+.gallery.static .ba-cap{display:block}
 /* static fallback grid */
 .gal-grid{display:none}
 .gallery.static .gallery-stage{cursor:default}
@@ -1386,25 +1392,18 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
     var gallery=document.getElementById('gallery'); if(!gallery) return;
     var stage=document.getElementById('galStage');
     var pool=[
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330',
-      'https://images.unsplash.com/photo-1545167622-3a6ac756afa4',
-      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80',
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e',
-      'https://images.unsplash.com/photo-1534528741775-53994a69daeb',
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d',
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9',
-      'https://images.unsplash.com/photo-1531123897727-8f129e1688ce'
+      {src:'images/ba-whitening.jpg', label:'Teeth whitening'},
+      {src:'images/ba-alignment.jpg', label:'Invisalign® & braces'},
+      {src:'images/ba-bonding.jpg',   label:'Composite bonding'},
+      {src:'images/ba-hygiene.jpg',   label:'Hygiene & polish'}
     ];
-    function url(base,w){ return base+'?q=80&w='+w+'&h='+Math.round(w*1.23)+'&fit=crop&crop=faces&auto=format'; }
-    function buildCard(base){
+    function buildCard(item){
       var fig=document.createElement('figure'); fig.className='ba-card';
-      var after=document.createElement('img'); after.src=url(base,420); after.alt=''; after.loading='lazy';
-      var before=document.createElement('span'); before.className='ba-before';
-      var bimg=document.createElement('img'); bimg.src=url(base,420); bimg.alt=''; bimg.loading='lazy';
-      before.appendChild(bimg);
+      var img=document.createElement('img'); img.src=item.src; img.alt='Before and after — '+item.label; img.loading='lazy';
       var tb=document.createElement('span'); tb.className='ba-tag ba-tag-b'; tb.textContent='Before';
       var ta=document.createElement('span'); ta.className='ba-tag ba-tag-a'; ta.textContent='After';
-      fig.appendChild(after); fig.appendChild(before); fig.appendChild(tb); fig.appendChild(ta);
+      var cap=document.createElement('figcaption'); cap.className='ba-cap'; cap.textContent=item.label;
+      fig.appendChild(img); fig.appendChild(tb); fig.appendChild(ta); fig.appendChild(cap);
       return fig;
     }
     var canTrail = window.matchMedia('(hover:hover) and (pointer:fine)').matches && !reduced;
@@ -1417,7 +1416,7 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
       return;
     }
     /* preload */
-    pool.forEach(function(b){ var im=new Image(); im.src=url(b,420); });
+    pool.forEach(function(it){ var im=new Image(); im.src=it.src; });
 
     /* custom cursor */
     var cur=document.createElement('div'); cur.className='gal-cursor'; cur.textContent='drag through'; gallery.appendChild(cur);
