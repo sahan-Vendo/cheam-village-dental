@@ -7,21 +7,22 @@
 <meta name="description" content="A calm, considered private dental studio in the heart of Cheam Village. Invisalign, implants, whitening and gentle family dentistry." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
 /* ============ TOKENS ============ */
 :root{
-  --porcelain:#F5F3F2;
-  --porcelain-deep:#E8E3D3;
-  --ink:#14160F;
-  --ink-soft:#34352F;
-  --sage:#2F4650;          /* brand deep teal — primary accent */
-  --sage-soft:#A3B4B2;     /* light teal-grey for dark backgrounds */
-  --gold:#BFAD66;          /* brand brass/metal accent */
+  --porcelain:#F3EDE1;      /* warm ivory — never pure white */
+  --porcelain-deep:#EAE0CE; /* warm sand / cream for cards */
+  --ink:#1A1C15;
+  --ink-soft:#39382F;
+  --sage:#2F4650;          /* brand deep teal — anchor accent */
+  --sage-soft:#A6B4B0;     /* light teal-grey for dark backgrounds */
+  --earth:#9C7B57;         /* warm wood / earthy organic accent */
+  --gold:#BBA463;          /* brand brass/metal accent */
   --coral:#E58084;         /* brand coral highlight */
-  --line:rgba(20,22,15,.15);
-  --line-light:rgba(245,243,242,.16);
-  --serif:"Fraunces", Georgia, serif;
+  --line:rgba(26,28,21,.14);
+  --line-light:rgba(243,237,225,.18);
+  --serif:"Cormorant Garamond", Georgia, serif;
   --sans:"Montserrat", Helvetica, sans-serif;
   --ease:cubic-bezier(.65,.05,0,1);
   --nav-h:84px;
@@ -53,15 +54,15 @@ body::after{
 
 /* ============ TYPO HELPERS ============ */
 .eyebrow{
-  font-size:11px;letter-spacing:.42em;text-transform:uppercase;font-weight:500;
+  font-size:11px;letter-spacing:.1em;text-transform:none;font-weight:500;
   display:flex;align-items:center;gap:16px;
 }
 .eyebrow::before{content:"";width:36px;height:1px;background:currentColor;opacity:.5}
 .h-display{
-  font-family:var(--serif);font-weight:300;line-height:1.02;
+  font-family:var(--serif);font-weight:400;line-height:1.02;
   letter-spacing:-.015em;
 }
-.h-display em{font-style:italic;font-weight:300}
+.h-display em{font-style:italic;font-weight:400}
 .wrap{width:min(1380px,calc(100% - clamp(40px,7vw,128px)));margin-inline:auto}
 
 /* reveal lines (JS wraps) */
@@ -81,7 +82,7 @@ body::after{
 }
 .pre-word span{display:inline-block;opacity:0;transform:translateY(12px)}
 #preloader .pre-count{
-  position:absolute;bottom:34px;right:44px;font-family:var(--serif);font-weight:300;
+  position:absolute;bottom:34px;right:44px;font-family:var(--serif);font-weight:400;
   font-size:clamp(40px,6vw,72px);font-variant-numeric:tabular-nums;opacity:.9;
 }
 
@@ -100,7 +101,7 @@ header.hidden{transform:translateY(-100%)}
 .brand svg{width:30px;height:auto;flex:none}
 .brand-name{font-size:11px;letter-spacing:.34em;text-transform:uppercase;font-weight:600;white-space:nowrap}
 .brand-name small{display:block;font-size:9px;letter-spacing:.34em;font-weight:400;opacity:.65;margin-top:3px}
-.nav-links{display:flex;gap:38px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+.nav-links{display:flex;gap:38px;font-size:11px;letter-spacing:.04em;text-transform:none;font-weight:500}
 .nav-links a{position:relative;padding:6px 0;opacity:.85;transition:opacity .3s}
 .nav-links a:hover{opacity:1}
 .nav-links a::after{
@@ -109,7 +110,7 @@ header.hidden{transform:translateY(-100%)}
 }
 .nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
 .nav-cta{
-  font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;
+  font-size:11px;letter-spacing:.04em;text-transform:none;font-weight:600;
   border:1px solid var(--ink);border-radius:999px;padding:13px 26px;
   transition:background .35s var(--ease),color .35s var(--ease);white-space:nowrap;
 }
@@ -131,11 +132,11 @@ body.menu-open .burger span:nth-child(3){transform:translateY(-7.5px) rotate(-45
 }
 #menu nav{display:flex;flex-direction:column;gap:4px}
 #menu a.menu-link{
-  font-family:var(--serif);font-weight:300;font-size:clamp(40px,9vw,64px);line-height:1.18;
+  font-family:var(--serif);font-weight:400;font-size:clamp(40px,9vw,64px);line-height:1.18;
   display:flex;align-items:baseline;gap:18px;width:fit-content;
 }
 #menu a.menu-link i{font-style:normal;font-family:var(--sans);font-size:11px;letter-spacing:.3em;opacity:.45}
-#menu .menu-foot{margin-top:48px;font-size:11px;letter-spacing:.25em;text-transform:uppercase;opacity:.6;line-height:2.2}
+#menu .menu-foot{margin-top:48px;font-size:12px;letter-spacing:.04em;text-transform:none;opacity:.6;line-height:2.2}
 
 /* ============ HERO ============ */
 .hero{
@@ -156,10 +157,18 @@ body.menu-open .burger span:nth-child(3){transform:translateY(-7.5px) rotate(-45
 }
 .hero-sub::before{content:"";flex:none;width:1px;align-self:stretch;background:var(--line)}
 .hero-actions{display:flex;align-items:center;gap:26px;margin-top:44px;flex-wrap:wrap}
+.hero-reviews{display:inline-flex;align-items:center;gap:11px;margin-top:26px;padding:2px 0}
+.hero-reviews .hr-g{width:20px;height:20px;flex:none;display:grid;place-items:center;background:#fff;border-radius:50%;box-shadow:0 2px 7px rgba(26,28,21,.12)}
+.hero-reviews .hr-g svg{width:12px;height:12px}
+.hero-reviews .hr-stars{display:flex;gap:2px}
+.hero-reviews .hr-stars svg{width:14px;height:14px;fill:var(--gold)}
+.hero-reviews .hr-text{font-size:13px;letter-spacing:.01em;color:var(--ink-soft)}
+.hero-reviews .hr-text b{font-weight:600;color:var(--ink)}
+.hero-reviews:hover .hr-text{text-decoration:underline;text-underline-offset:3px}
 .btn-pill{
   display:inline-flex;align-items:center;gap:14px;
   background:var(--ink);color:var(--porcelain);border-radius:999px;
-  padding:19px 34px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;
+  padding:19px 34px;font-size:11px;letter-spacing:.06em;text-transform:none;font-weight:600;
   position:relative;overflow:hidden;transition:color .4s var(--ease);
 }
 .btn-pill::before{
@@ -171,7 +180,7 @@ body.menu-open .burger span:nth-child(3){transform:translateY(-7.5px) rotate(-45
 .btn-pill:hover::before{transform:translateY(0)}
 .btn-pill:hover svg{transform:translate(3px,-3px)}
 .link-ul{
-  font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;
+  font-size:11px;letter-spacing:.06em;text-transform:none;font-weight:600;
   border-bottom:1px solid var(--ink);padding-bottom:6px;transition:opacity .3s;
 }
 .link-ul:hover{opacity:.55}
@@ -190,7 +199,7 @@ body.menu-open .burger span:nth-child(3){transform:translateY(-7.5px) rotate(-45
 .slide-nav{display:flex;gap:30px;justify-content:center;max-width:480px;margin:24px 0 0 auto}
 .snav{
   display:flex;flex-direction:column;gap:9px;align-items:flex-start;padding:4px 0;
-  font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;font-weight:600;
+  font-size:9.5px;letter-spacing:.05em;text-transform:none;font-weight:600;
   opacity:.4;transition:opacity .35s;
 }
 .snav:hover{opacity:.75}
@@ -214,12 +223,12 @@ body.menu-open .burger span:nth-child(3){transform:translateY(-7.5px) rotate(-45
   width:min(1380px,calc(100% - clamp(40px,7vw,128px)));
   color:var(--porcelain);display:flex;flex-direction:column;gap:clamp(18px,3vh,30px);
 }
-.expand-kicker{font-size:11px;letter-spacing:.42em;text-transform:uppercase;font-weight:500;color:var(--sage-soft)}
+.expand-kicker{font-size:11px;letter-spacing:.1em;text-transform:none;font-weight:500;color:var(--sage-soft)}
 .expand-title{font-size:clamp(44px,7vw,118px);line-height:1.04}
 .expand-title .xl{display:block;overflow:hidden;padding-block:.06em;margin-block:-.06em}
 .expand-title .xl>span{display:block}
 .expand-foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;margin-top:6px}
-.expand-tags{display:flex;gap:clamp(14px,2.5vw,30px);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;opacity:.85;flex-wrap:wrap}
+.expand-tags{display:flex;gap:clamp(14px,2.5vw,30px);font-size:10.5px;letter-spacing:.05em;text-transform:none;opacity:.85;flex-wrap:wrap}
 
 /* header over dark expanded hero */
 header.on-dark{background:transparent;border-color:transparent;backdrop-filter:none}
@@ -256,7 +265,7 @@ header.on-dark .burger span{background:var(--porcelain)}
 .marquee-track{display:flex;gap:0;width:max-content;animation:marquee 28s linear infinite}
 .marquee-track > div{display:flex;align-items:center;flex:none}
 .marquee span{
-  font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(20px,2.4vw,30px);
+  font-family:var(--serif);font-weight:400;font-style:italic;font-size:clamp(20px,2.4vw,30px);
   white-space:nowrap;padding:0 28px;
 }
 .marquee svg{width:20px;flex:none;opacity:.8}
@@ -279,7 +288,7 @@ header.on-dark .burger span{background:var(--porcelain)}
 .intro-cols strong{font-weight:600;letter-spacing:.04em}
 .sig{margin-top:42px;display:flex;align-items:center;gap:18px}
 .sig .sig-name{font-family:var(--serif);font-style:italic;font-size:22px}
-.sig .sig-role{font-size:10px;letter-spacing:.3em;text-transform:uppercase;opacity:.55}
+.sig .sig-role{font-size:10px;letter-spacing:.05em;text-transform:none;opacity:.55}
 
 /* ============ SERVICES ============ */
 .services{padding:clamp(90px,12vh,160px) 0 clamp(110px,14vh,180px);position:relative}
@@ -295,9 +304,9 @@ header.on-dark .burger span{background:var(--porcelain)}
 }
 @media(hover:hover){.service-row:hover{padding-left:28px}}
 .service-row .num{font-size:11px;letter-spacing:.3em;opacity:.45;font-weight:500}
-.service-row h3{font-family:var(--serif);font-weight:300;font-size:clamp(26px,3.4vw,52px);line-height:1.1;transition:color .35s}
+.service-row h3{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3.4vw,52px);line-height:1.1;transition:color .35s}
 .service-row:hover h3{color:var(--sage)}
-.service-row .tag{font-size:11px;letter-spacing:.26em;text-transform:uppercase;opacity:.55;text-align:right}
+.service-row .tag{font-size:11px;letter-spacing:.05em;text-transform:none;opacity:.55;text-align:right}
 .service-row .arr{
   width:44px;height:44px;border:1px solid var(--line);border-radius:50%;
   display:grid;place-items:center;transition:background .4s var(--ease),transform .4s var(--ease),border-color .4s;
@@ -310,6 +319,9 @@ header.on-dark .burger span{background:var(--porcelain)}
   pointer-events:none;z-index:60;opacity:0;transform:scale(.85);will-change:transform;
 }
 .float-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}
+.services-foot{margin-top:clamp(34px,5vh,56px);font-size:14.5px;color:var(--ink-soft);opacity:.85}
+.services-foot a{border-bottom:1px solid var(--sage);padding-bottom:2px;color:var(--sage);transition:opacity .3s}
+.services-foot a:hover{opacity:.6}
 .float-img img.on{opacity:1}
 
 /* ============ STATEMENT (DARK) ============ */
@@ -319,7 +331,7 @@ header.on-dark .burger span{background:var(--porcelain)}
 }
 .statement .eyebrow{color:var(--sage-soft);margin-bottom:48px}
 .statement p.big{
-  font-family:var(--serif);font-weight:300;font-size:clamp(30px,4.4vw,66px);line-height:1.28;
+  font-family:var(--serif);font-weight:400;font-size:clamp(30px,4.4vw,66px);line-height:1.28;
   max-width:21ch;letter-spacing:-.01em;
 }
 .statement p.big .w{opacity:.18;display:inline-block}
@@ -329,11 +341,11 @@ header.on-dark .burger span{background:var(--porcelain)}
   margin-top:clamp(80px,12vh,130px);padding-top:56px;border-top:1px solid var(--line-light);
 }
 .stat .stat-num{
-  font-family:var(--serif);font-weight:300;font-size:clamp(44px,5vw,76px);line-height:1;
+  font-family:var(--serif);font-weight:400;font-size:clamp(44px,5vw,76px);line-height:1;
   display:flex;align-items:baseline;
 }
 .stat .stat-num i{font-style:italic;font-size:.55em;color:var(--sage-soft);margin-left:4px}
-.stat .stat-label{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;opacity:.55;margin-top:16px}
+.stat .stat-label{font-size:10.5px;letter-spacing:.05em;text-transform:none;opacity:.55;margin-top:16px}
 .statement .ghost-tooth{
   position:absolute;right:-4%;top:50%;transform:translateY(-50%);width:clamp(280px,34vw,520px);
   opacity:.06;pointer-events:none;
@@ -377,7 +389,7 @@ header.on-dark .burger span{background:var(--porcelain)}
 .wcard p{font-size:13.5px;line-height:1.8;color:var(--ink-soft);max-width:320px}
 .wheel-counter{
   position:absolute;left:0;top:2px;
-  font-family:var(--serif);font-weight:300;font-size:24px;font-variant-numeric:tabular-nums;
+  font-family:var(--serif);font-weight:400;font-size:24px;font-variant-numeric:tabular-nums;
   display:flex;align-items:baseline;
 }
 .wheel-counter i{font-style:normal;font-size:13px;opacity:.45}
@@ -418,7 +430,7 @@ header.on-dark .burger span{background:var(--porcelain)}
 }
 .gallery-top .eyebrow{color:var(--sage-soft)}
 .gal-hint{
-  font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;font-weight:500;opacity:.6;
+  font-size:10.5px;letter-spacing:.06em;text-transform:none;font-weight:500;opacity:.6;
   display:flex;align-items:center;gap:11px;
 }
 .gal-hint-dot{width:7px;height:7px;border-radius:50%;background:var(--sage-soft);animation:hintPulse 1.8s ease-in-out infinite}
@@ -429,11 +441,11 @@ header.on-dark .burger span{background:var(--porcelain)}
   opacity:.8;margin-bottom:clamp(8px,1.4vh,16px);max-width:30ch;margin-inline:auto;line-height:1.5;
 }
 .gal-pos em{
-  font-style:normal;font-family:var(--sans);font-size:.6em;letter-spacing:.24em;text-transform:uppercase;
+  font-style:normal;font-family:var(--sans);font-size:.6em;letter-spacing:.06em;text-transform:none;
   opacity:.55;margin-right:.85em;vertical-align:middle;
 }
 .gal-term{
-  font-family:var(--serif);font-weight:300;line-height:.96;letter-spacing:-.02em;
+  font-family:var(--serif);font-weight:400;line-height:.96;letter-spacing:-.02em;
   font-size:clamp(58px,13vw,200px);mix-blend-mode:difference;
 }
 .gal-term span{color:var(--sage-soft);font-style:italic;padding:0 .04em}
@@ -445,7 +457,7 @@ header.on-dark .burger span{background:var(--porcelain)}
   pointer-events:auto;position:relative;z-index:6;margin-top:clamp(28px,4.2vh,44px);
   display:inline-flex;align-items:center;gap:13px;padding:16px 30px;border-radius:999px;
   border:1px solid rgba(246,243,237,.42);color:var(--porcelain);background:transparent;
-  font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;cursor:pointer;
+  font-size:11px;letter-spacing:.06em;text-transform:none;font-weight:600;cursor:pointer;
   transition:background .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease);
 }
 .gal-cta:hover{background:var(--porcelain);color:var(--ink);border-color:var(--porcelain)}
@@ -469,11 +481,11 @@ header.on-dark .burger span{background:var(--porcelain)}
 .ba-cap{
   position:absolute;left:0;right:0;bottom:0;display:none;z-index:2;
   padding:32px 12px 11px;text-align:center;
-  font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--porcelain);
+  font-size:10px;letter-spacing:.04em;text-transform:none;font-weight:600;color:var(--porcelain);
   background:linear-gradient(to top, rgba(13,11,10,.85), transparent);
 }
 .ba-tag{
-  position:absolute;z-index:2;font-size:8px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;
+  position:absolute;z-index:2;font-size:8px;letter-spacing:.04em;text-transform:none;font-weight:600;
   color:var(--porcelain);background:rgba(23,20,17,.55);padding:4px 7px;border-radius:3px;backdrop-filter:blur(3px);
 }
 .ba-tag-b{top:9px;left:9px}
@@ -501,6 +513,33 @@ header.on-dark .burger span{background:var(--porcelain)}
   .gallery.static .gal-grid{grid-template-columns:repeat(2,1fr)}
   .gallery-top{flex-direction:column;align-items:flex-start;gap:14px}
 }
+
+/* ============ PERSISTENT CONTACT FAB ============ */
+.contact-fab{
+  position:fixed;right:clamp(16px,2.4vw,32px);bottom:clamp(16px,2.4vw,32px);z-index:790;
+  display:flex;flex-direction:column;gap:12px;align-items:flex-end;
+}
+.cfab{
+  display:inline-flex;align-items:center;gap:0;height:54px;border-radius:999px;
+  color:#fff;box-shadow:0 14px 34px -12px rgba(26,28,21,.5);overflow:hidden;
+  width:54px;padding:0;transition:width .45s var(--ease),box-shadow .35s,transform .35s var(--ease);
+  cursor:pointer;
+}
+.cfab svg{width:26px;height:26px;flex:none;margin:0 14px}
+.cfab-label{
+  white-space:nowrap;font-size:12px;letter-spacing:.04em;font-weight:600;
+  opacity:0;transform:translateX(-6px);transition:opacity .3s,transform .35s var(--ease);padding-right:6px;
+}
+.cfab-wa{background:#25D366}
+.cfab-chat{background:var(--sage)}
+@media(hover:hover){
+  .cfab:hover{width:158px;box-shadow:0 18px 40px -10px rgba(26,28,21,.6)}
+  .cfab:hover .cfab-label{opacity:1;transform:translateX(0)}
+}
+@media(hover:none){
+  .cfab{width:54px}
+}
+@media(max-width:640px){ .cfab{height:50px} .cfab svg{width:24px;height:24px;margin:0 13px} }
 
 /* ============ FLOATING GOOGLE REVIEWS ============ */
 .greview{
@@ -530,7 +569,7 @@ header.on-dark .burger span{background:var(--porcelain)}
 .greview-score{font-family:var(--serif);font-weight:400;font-size:19px;letter-spacing:.01em}
 .greview-stars{display:flex;gap:1.5px}
 .greview-stars svg{width:12px;height:12px;fill:var(--gold)}
-.greview-meta{font-size:9px;letter-spacing:.16em;text-transform:uppercase;opacity:.6;font-weight:600}
+.greview-meta{font-size:10px;letter-spacing:.04em;text-transform:none;opacity:.62;font-weight:600}
 .greview-arrow{
   margin-left:4px;width:30px;height:30px;flex:none;border:1px solid var(--line);border-radius:50%;
   display:grid;place-items:center;color:var(--ink);
@@ -569,9 +608,9 @@ header.on-dark .burger span{background:var(--porcelain)}
 .quote{position:absolute;inset:0;opacity:0;visibility:hidden}
 .quote.active{opacity:1;visibility:visible}
 .quote blockquote{
-  font-family:var(--serif);font-weight:300;font-size:clamp(24px,3.2vw,44px);line-height:1.4;font-style:italic;
+  font-family:var(--serif);font-weight:400;font-size:clamp(24px,3.2vw,44px);line-height:1.4;font-style:italic;
 }
-.quote .who{margin-top:34px;font-size:11px;letter-spacing:.3em;text-transform:uppercase}
+.quote .who{margin-top:34px;font-size:11px;letter-spacing:.05em;text-transform:none}
 .quote .who b{font-weight:600}
 .quote .who span{opacity:.5;font-weight:400}
 .q-stars{display:flex;justify-content:center;gap:6px;margin-bottom:30px}
@@ -593,7 +632,7 @@ header.on-dark .burger span{background:var(--porcelain)}
 .visit-info{display:flex;flex-direction:column;gap:0;border-left:1px solid var(--line-light);padding-left:clamp(28px,3vw,56px)}
 .info-block{padding:26px 0;border-bottom:1px solid var(--line-light)}
 .info-block:first-child{padding-top:6px}
-.info-block h4{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--sage-soft);margin-bottom:14px;font-weight:600}
+.info-block h4{font-size:11px;letter-spacing:.08em;text-transform:none;color:var(--sage-soft);margin-bottom:14px;font-weight:600}
 .info-block p,.info-block a{font-size:15px;line-height:1.9;opacity:.88}
 .info-block a:hover{opacity:1;text-decoration:underline;text-underline-offset:4px}
 .hours{display:grid;grid-template-columns:auto 1fr;gap:6px 28px;font-size:14px}
@@ -607,14 +646,14 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
 .foot-brand svg{width:38px}
 .foot-brand svg{stroke:var(--porcelain)}
 .foot-brand .brand-name{font-weight:500}
-.foot-links{display:flex;gap:30px;font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;opacity:.7;flex-wrap:wrap}
+.foot-links{display:flex;gap:30px;font-size:10.5px;letter-spacing:.06em;text-transform:none;opacity:.7;flex-wrap:wrap}
 .foot-links a:hover{opacity:1;text-decoration:underline;text-underline-offset:4px}
 .foot-bottom{
   display:flex;justify-content:space-between;gap:20px;padding:26px 0 34px;
-  font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.4;flex-wrap:wrap;
+  font-size:10.5px;letter-spacing:.04em;text-transform:none;opacity:.45;flex-wrap:wrap;
 }
 .big-word{
-  font-family:var(--serif);font-weight:300;font-size:clamp(64px,12.5vw,210px);line-height:.9;
+  font-family:var(--serif);font-weight:400;font-size:clamp(64px,12.5vw,210px);line-height:.9;
   text-align:center;letter-spacing:.02em;padding:30px 0 0;opacity:.999;white-space:nowrap;
   color:transparent;-webkit-text-stroke:1px rgba(246,243,237,.35);user-select:none;
 }
@@ -729,7 +768,7 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
           <span class="hl"><span class="indent"></span>kind of</span>
           <span class="hl"><em id="rotWord">dentistry.</em></span>
         </h1>
-        <p class="hero-sub" data-fade>Calm rooms, unhurried appointments and meticulous clinical care — a village studio where your smile is looked after for life, not just fixed for now.</p>
+        <p class="hero-sub" data-fade>An independent, boutique dental studio in the heart of Cheam Village — warm, unhurried and considered. The whole family, looked after beautifully.</p>
         <div class="hero-actions" data-fade>
           <a class="btn-pill" href="#visit">
             <span>Book a consultation</span>
@@ -737,6 +776,15 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
           </a>
           <a class="link-ul" href="#treatments">Explore treatments</a>
         </div>
+        <a class="hero-reviews" href="#voices" data-fade aria-label="Rated 4.9 out of 5 from 127 Google reviews">
+          <span class="hr-g" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.4a5.5 5.5 0 0 1-2.4 3.6v3h3.9c2.3-2.1 3.6-5.2 3.6-8.8Z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-3l-3.9-3a7.2 7.2 0 0 1-10.7-3.8H1.3v3.1A12 12 0 0 0 12 24Z"/><path fill="#FBBC05" d="M5.3 14.3a7.1 7.1 0 0 1 0-4.6V6.6H1.3a12 12 0 0 0 0 10.8l4-3.1Z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4A12 12 0 0 0 1.3 6.6l4 3.1A7.2 7.2 0 0 1 12 4.8Z"/></svg>
+          </span>
+          <span class="hr-stars" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7z"/></svg>
+          </span>
+          <span class="hr-text"><b>4.9</b> · 127 Google reviews</span>
+        </a>
       </div>
       <div class="hero-visual">
         <div class="arch-wrap">
@@ -788,11 +836,11 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track" id="marqueeTrack">
       <div>
-        <span>Invisalign®</span><svg viewBox="0 0 64 80" style="stroke:var(--sage)"><use href="#toothMark"/></svg>
+        <span>Clear aligners</span><svg viewBox="0 0 64 80" style="stroke:var(--sage)"><use href="#toothMark"/></svg>
         <span>Dental implants</span><svg viewBox="0 0 64 80" style="stroke:var(--sage)"><use href="#toothMark"/></svg>
+        <span>Smile makeover</span><svg viewBox="0 0 64 80" style="stroke:var(--sage)"><use href="#toothMark"/></svg>
         <span>Teeth whitening</span><svg viewBox="0 0 64 80" style="stroke:var(--sage)"><use href="#toothMark"/></svg>
-        <span>Composite bonding</span><svg viewBox="0 0 64 80" style="stroke:var(--sage)"><use href="#toothMark"/></svg>
-        <span>Hygiene &amp; prevention</span><svg viewBox="0 0 64 80" style="stroke:var(--sage)"><use href="#toothMark"/></svg>
+        <span>Family dentistry</span><svg viewBox="0 0 64 80" style="stroke:var(--sage)"><use href="#toothMark"/></svg>
       </div>
     </div>
   </div>
@@ -801,20 +849,20 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
   <section class="intro" id="studio">
     <div class="wrap intro-grid">
       <div class="intro-left">
-        <p class="eyebrow" data-fade>The studio</p>
-        <div class="intro-img" data-fade>
-          <img data-parallax src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=700&auto=format&fit=crop" alt="A patient relaxing in the studio" loading="lazy" />
+        <p class="eyebrow" data-fade>The husband &amp; wife behind the studio</p>
+        <div class="intro-img" data-rotate="-7">
+          <img data-parallax src="images/founders.jpg" alt="Dr Kaajal Patel at Cheam Village Dental Studios" loading="lazy" />
         </div>
       </div>
       <div class="intro-right">
-        <h2 class="h-display" data-lines>Tucked beside the timbered lanes of Cheam Village, our studio was designed to feel <span class="accent">nothing like a dental practice</span> — and everything like care.</h2>
+        <h2 class="h-display" data-lines>Cheam Village is run by <span class="accent">Dr Krishan &amp; Dr Kaajal Patel</span> — a husband-and-wife team who built the kind of practice they'd want for their own family.</h2>
         <div class="intro-cols" data-fade>
-          <p><strong>No rushed chairs, no fluorescent hum.</strong> Appointments run to your pace, treatment plans are explained in plain English, and every room is filled with natural light and quiet.</p>
-          <p>From six-month check-ups to full smile transformations, one small team looks after you year after year — so your dentist is never a stranger.</p>
+          <p><strong>One small team, looking after yours.</strong> You'll see the same familiar faces each visit, with unhurried appointments and treatment explained in plain, everyday language — never jargon.</p>
+          <p>From children's first check-ups to teeth straightening and complete smile makeovers, the whole family is welcome, and looked after with the same care, year after year.</p>
         </div>
         <div class="sig" data-fade>
-          <span class="sig-name">Dr. Elena Marsh</span>
-          <span class="sig-role">Principal Dentist · GDC 114820</span>
+          <span class="sig-name">Dr Krishan &amp; Dr Kaajal Patel</span>
+          <span class="sig-role">Founders · Cheam Village Dental Studios</span>
         </div>
       </div>
     </div>
@@ -828,52 +876,39 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
           <p class="eyebrow" data-fade>Treatments</p>
           <h2 class="h-display" data-lines>Everything your <em>smile</em> needs</h2>
         </div>
-        <span class="count" data-fade>( 06 )</span>
+        <span class="count" data-fade>( 04 )</span>
       </div>
       <div class="service-list" id="serviceList">
-        <a class="service-row" href="#visit" data-img="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?q=80&w=600&auto=format&fit=crop">
+        <a class="service-row" href="#visit" data-img="images/hero-invisalign.jpg">
           <span class="num">01</span>
-          <h3>Invisalign®</h3>
-          <span class="tag">Discreet alignment</span>
-          <span class="arr"><svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="#171411" stroke-width="1.3"/></svg></span>
-          <p class="mob-desc">Near-invisible aligners that straighten teeth gently, on your schedule.</p>
+          <h3>Clear aligners</h3>
+          <span class="tag">Teeth straightening</span>
+          <span class="arr"><svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="#1A1C15" stroke-width="1.3"/></svg></span>
+          <p class="mob-desc">Near-invisible Invisalign® aligners that gently straighten teeth, on your schedule.</p>
         </a>
-        <a class="service-row" href="#visit" data-img="https://images.unsplash.com/photo-1629909615184-74f495363b67?q=80&w=600&auto=format&fit=crop">
+        <a class="service-row" href="#visit" data-img="images/ba-bonding.jpg">
           <span class="num">02</span>
           <h3>Dental implants</h3>
-          <span class="tag">Permanent restoration</span>
-          <span class="arr"><svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="#171411" stroke-width="1.3"/></svg></span>
-          <p class="mob-desc">Natural-looking, lifelong replacements for missing teeth.</p>
+          <span class="tag">Replace missing teeth</span>
+          <span class="arr"><svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="#1A1C15" stroke-width="1.3"/></svg></span>
+          <p class="mob-desc">Natural-looking, lifelong replacements for missing or failing teeth.</p>
         </a>
-        <a class="service-row" href="#visit" data-img="https://images.unsplash.com/photo-1545167622-3a6ac756afa4?q=80&w=600&auto=format&fit=crop">
+        <a class="service-row" href="#visit" data-img="images/hero-whitening.jpg">
           <span class="num">03</span>
-          <h3>Teeth whitening</h3>
-          <span class="tag">Professional brightening</span>
-          <span class="arr"><svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="#171411" stroke-width="1.3"/></svg></span>
-          <p class="mob-desc">Safe, dentist-led whitening tailored to your enamel.</p>
+          <h3>Smile makeover</h3>
+          <span class="tag">Veneers, bonding &amp; whitening</span>
+          <span class="arr"><svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="#1A1C15" stroke-width="1.3"/></svg></span>
+          <p class="mob-desc">A considered plan to reshape, brighten and perfect your whole smile.</p>
         </a>
-        <a class="service-row" href="#visit" data-img="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&auto=format&fit=crop">
+        <a class="service-row" href="#visit" data-img="images/ba-whitening.jpg">
           <span class="num">04</span>
-          <h3>Composite bonding</h3>
-          <span class="tag">Same-day artistry</span>
-          <span class="arr"><svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="#171411" stroke-width="1.3"/></svg></span>
-          <p class="mob-desc">Sculpted edges and closed gaps — often in a single visit.</p>
-        </a>
-        <a class="service-row" href="#visit" data-img="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=600&auto=format&fit=crop">
-          <span class="num">05</span>
-          <h3>General dentistry</h3>
-          <span class="tag">Families welcome</span>
-          <span class="arr"><svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="#171411" stroke-width="1.3"/></svg></span>
-          <p class="mob-desc">Check-ups, fillings and crowns for every generation.</p>
-        </a>
-        <a class="service-row" href="#visit" data-img="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=600&auto=format&fit=crop">
-          <span class="num">06</span>
-          <h3>Hygiene &amp; prevention</h3>
-          <span class="tag">Airflow® cleaning</span>
-          <span class="arr"><svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="#171411" stroke-width="1.3"/></svg></span>
-          <p class="mob-desc">Gentle, thorough cleans that keep problems from ever starting.</p>
+          <h3>Teeth whitening</h3>
+          <span class="tag">Brighter in days</span>
+          <span class="arr"><svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="#1A1C15" stroke-width="1.3"/></svg></span>
+          <p class="mob-desc">Safe, dentist-led whitening tailored to you — for a natural, brighter smile.</p>
         </a>
       </div>
+      <p class="services-foot" data-fade>Plus children's check-ups, hygiene and everyday family dentistry — <a href="#visit">see all treatments</a>.</p>
     </div>
     <div class="float-img" id="floatImg" aria-hidden="true"></div>
   </section>
@@ -1104,6 +1139,18 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
   </a>
   <button class="greview-close" id="gReviewClose" type="button" aria-label="Dismiss reviews badge">
     <svg width="9" height="9" viewBox="0 0 10 10" fill="none"><path d="M1 1l8 8M9 1l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </button>
+</div>
+
+<!-- ============ PERSISTENT CONTACT (WhatsApp + live chat) ============ -->
+<div class="contact-fab" id="contactFab" aria-label="Quick contact">
+  <a class="cfab cfab-wa" href="https://wa.me/442086420000" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.6 6L4 29l8.2-1.6c1.8.9 3.8 1.4 5.8 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3Zm0 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-4.3.9.9-4.2-.3-.4A9.8 9.8 0 0 1 6.2 15c0-5.4 4.4-9.8 9.8-9.8s9.8 4.4 9.8 9.8-4.4 9.8-9.8 9.8Zm5.4-7.3c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.2 3.4 5.3 4.7 2 .8 2.7.9 3.7.8.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3Z"/></svg>
+    <span class="cfab-label">WhatsApp</span>
+  </a>
+  <button class="cfab cfab-chat" id="liveChatBtn" type="button" aria-label="Start a live chat">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 5C9.9 5 5 9.3 5 14.6c0 2.9 1.5 5.5 3.8 7.2-.2 1.4-.8 2.8-1.8 3.9 1.7-.2 3.4-.8 4.8-1.8 1.3.4 2.7.6 4.2.6 6.1 0 11-4.3 11-9.6S22.1 5 16 5Zm-4 11a1.4 1.4 0 1 1 0-2.8 1.4 1.4 0 0 1 0 2.8Zm4 0a1.4 1.4 0 1 1 0-2.8 1.4 1.4 0 0 1 0 2.8Zm4 0a1.4 1.4 0 1 1 0-2.8 1.4 1.4 0 0 1 0 2.8Z"/></svg>
+    <span class="cfab-label">Live chat</span>
   </button>
 </div>
 
@@ -1369,6 +1416,15 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
       scrollTrigger:{trigger:img.closest('div'),start:'top bottom',end:'bottom top',scrub:true}});
   });
 
+  /* Apple-style rotation/reveal on scroll */
+  gsap.utils.toArray('[data-rotate]').forEach(function(el){
+    var deg = parseFloat(el.dataset.rotate)||-6;
+    gsap.fromTo(el,{rotation:deg,scale:.9,opacity:0,transformOrigin:'50% 60%'},{
+      rotation:0,scale:1,opacity:1,ease:'power3.out',
+      scrollTrigger:{trigger:el,start:'top 88%',end:'top 45%',scrub:.6}
+    });
+  });
+
   /* statement word reveal */
   var big=document.getElementById('bigStatement');
   big.innerHTML = big.innerHTML.split(/(\s+|<em>|<\/em>)/).map(function(t){
@@ -1621,6 +1677,14 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
     /* placeholder link — swap href for the studio's real Google reviews URL */
     var link=document.getElementById('gReviewLink');
     if(link) link.addEventListener('click',function(e){ e.preventDefault(); });
+  })();
+
+  /* ---------- live chat button ---------- */
+  /* No chat provider wired yet — falls back to WhatsApp. Replace this with a
+     Tawk.to / Intercom / Crisp embed snippet when the studio chooses one. */
+  (function(){
+    var btn=document.getElementById('liveChatBtn'); if(!btn) return;
+    btn.addEventListener('click',function(){ window.open('https://wa.me/442086420000','_blank','noopener'); });
   })();
 
 })();
