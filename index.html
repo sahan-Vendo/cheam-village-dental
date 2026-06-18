@@ -22,17 +22,25 @@
 }
 /* ============ TOKENS ============ */
 :root{
-  --porcelain:#F3EDE1;      /* warm ivory — never pure white */
-  --porcelain-deep:#EAE0CE; /* warm sand / cream for cards */
-  --ink:#16201F;          /* darkened brand teal — premium tinted near-black */
-  --ink-soft:#39382F;
-  --sage:#2F4650;          /* brand deep teal — anchor accent */
-  --sage-soft:#A6B4B0;     /* light teal-grey for dark backgrounds */
-  --earth:#9C7B57;         /* warm wood / earthy organic accent */
-  --gold:#BBA463;          /* brand brass/metal accent */
-  --coral:#E58084;         /* brand coral highlight */
-  --line:rgba(22,32,31,.15);
-  --line-light:rgba(243,237,225,.18);
+  /* ---- Brand-aligned palette (Cheam Village Dental brand sheet) ---- */
+  --porcelain:#F4F4F1;      /* cool soft off-white — brand BASE #F5F6F6 (a hair warm so it reads boutique, not clinical) */
+  --porcelain-deep:#E7E8E0; /* cool eggshell cream for cards — brand cream #E5E8DE */
+  --ink:#14201F;            /* cool dark teal-charcoal — body text / near-black */
+  --ink-soft:#49534F;       /* cool slate-grey — secondary text (was warm brown) */
+  --sage:#2B4750;           /* brand DEEP TEAL — anchor accent */
+  --sage-soft:#A8BDC0;      /* brand dusty-blue — muted labels on dark sections */
+  --deep:#10495D;           /* brand BRIGHT TEAL — primary dark-section background */
+  --forest:#51675E;         /* brand forest green — secondary accent (links, arrows, indices) */
+  --sage-grey:#8C9D97;      /* brand sage-grey — neutral accent / ticks */
+  --silver:#C4CDCE;         /* brand silver-grey — cool light neutral */
+  --earth:#51675E;          /* legacy alias → forest green */
+  --gold:#C7B374;           /* brand BRASS metal — stars + process gauge */
+  --coral:#E58084;          /* brand CORAL — rare warm pop */
+  --mist:#EBEDE6;           /* faint sage-cream — light section band */
+  --deep-ground:#1C3E48;    /* deep teal — grounding (footer) */
+  --forest-deep:#3B524A;    /* deep forest green — CTA / book band */
+  --line:rgba(20,32,31,.14);
+  --line-light:rgba(245,246,245,.16);
   --serif:"Editors Note", Georgia, serif;
   --sans:"Hanken Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --ease:cubic-bezier(.65,.05,0,1);
@@ -82,16 +90,12 @@ body::after{
 
 /* ============ PRELOADER ============ */
 #preloader{
-  position:fixed;inset:0;z-index:9999;background:var(--ink);
+  position:fixed;inset:0;z-index:9999;background:var(--deep);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;
   color:var(--porcelain);
 }
-#preloader .pre-tooth{width:64px;height:auto}
-#preloader .pre-tooth{stroke:var(--porcelain);fill:none}
-.pre-word{
-  display:flex;gap:.45em;font-size:11px;letter-spacing:.5em;text-transform:uppercase;font-weight:500;
-}
-.pre-word span{display:inline-block;opacity:0;transform:translateY(12px)}
+#preloader .pre-emblem{width:clamp(184px,26vw,240px);height:auto;color:var(--porcelain);opacity:0;will-change:transform,opacity}
+#preloader .pre-ring{will-change:transform}
 #preloader .pre-count{
   position:absolute;bottom:34px;right:44px;font-family:var(--serif);font-weight:400;
   font-size:clamp(40px,6vw,72px);font-variant-numeric:tabular-nums;opacity:.9;
@@ -103,13 +107,13 @@ header{
   transition:transform .6s var(--ease), background .4s, border-color .4s;
   border-bottom:1px solid transparent;
 }
-header.scrolled{background:rgba(246,243,237,.86);backdrop-filter:blur(14px);border-color:var(--line)}
+header.scrolled{background:rgba(245,246,245,.86);backdrop-filter:blur(14px);border-color:var(--line)}
 header.hidden{transform:translateY(-100%)}
 .nav{
   height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:24px;
 }
 .brand{display:flex;align-items:center;gap:14px}
-.brand svg{width:30px;height:auto;flex:none}
+.brand-logo{height:clamp(30px,3.6vw,38px);width:auto;flex:none;display:block}
 .brand-name{font-size:11px;letter-spacing:.34em;text-transform:uppercase;font-weight:600;white-space:nowrap}
 .brand-name small{display:block;font-size:9px;letter-spacing:.34em;font-weight:400;opacity:.65;margin-top:3px}
 .nav-links{display:flex;gap:38px;font-size:11px;letter-spacing:.04em;text-transform:none;font-weight:500}
@@ -137,7 +141,7 @@ body.menu-open .burger span:nth-child(3){transform:translateY(-7.5px) rotate(-45
 
 /* mobile menu */
 #menu{
-  position:fixed;inset:0;z-index:950;background:var(--ink);color:var(--porcelain);
+  position:fixed;inset:0;z-index:950;background:var(--deep);color:var(--porcelain);
   display:flex;flex-direction:column;justify-content:center;padding:0 clamp(28px,8vw,80px);
   clip-path:inset(0 0 100% 0);visibility:hidden;
 }
@@ -222,7 +226,7 @@ body.menu-open .burger span:nth-child(3){transform:translateY(-7.5px) rotate(-45
 .snav:hover{opacity:.75}
 .snav.on{opacity:1}
 .snav .bar{display:block;width:56px;height:2px;background:rgba(23,20,17,.15);position:relative;overflow:hidden}
-.snav .bar span{position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:left}
+.snav .bar span{position:absolute;inset:0;background:var(--coral);transform:scaleX(0);transform-origin:left}
 
 /* scroll-driven hero expansion */
 .hero-expand{
@@ -250,7 +254,7 @@ body.menu-open .burger span:nth-child(3){transform:translateY(-7.5px) rotate(-45
 /* header over dark expanded hero */
 header.on-dark{background:transparent;border-color:transparent;backdrop-filter:none}
 header.on-dark .brand,header.on-dark .nav-links a{color:var(--porcelain)}
-header.on-dark .nav-cta{color:var(--porcelain);border-color:rgba(246,243,237,.5)}
+header.on-dark .nav-cta{color:var(--porcelain);border-color:rgba(245,246,245,.5)}
 header.on-dark .nav-cta:hover{background:var(--porcelain);color:var(--ink)}
 header.on-dark .burger span{background:var(--porcelain)}
 .badge-rotor{
@@ -304,20 +308,20 @@ header.on-dark .burger span{background:var(--porcelain)}
 .sig .sig-role{font-size:10px;letter-spacing:.05em;text-transform:none;opacity:.55}
 .intro-cta{
   display:inline-flex;align-items:center;gap:12px;margin-top:clamp(28px,4vh,40px);
-  padding:15px 28px;border:1px solid var(--sage);border-radius:999px;color:var(--sage);
+  padding:15px 28px;border:1px solid var(--forest);border-radius:999px;color:var(--forest);
   font-size:11px;letter-spacing:.06em;font-weight:600;
   transition:background .4s var(--ease),color .4s var(--ease);
 }
 .intro-cta svg{transition:transform .4s var(--ease)}
-.intro-cta:hover{background:var(--sage);color:var(--porcelain)}
+.intro-cta:hover{background:var(--forest);color:var(--porcelain)}
 .intro-cta:hover svg{transform:translate(3px,-3px)}
 
 /* ============ SERVICES ============ */
-.services{padding:clamp(90px,12vh,160px) 0 clamp(110px,14vh,180px);position:relative}
+.services{padding:clamp(90px,12vh,160px) 0 clamp(110px,14vh,180px);position:relative;background:var(--mist)}
 .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:clamp(48px,7vh,84px)}
 .section-head h2{font-size:clamp(40px,5.4vw,84px)}
 .section-head .eyebrow{color:var(--sage);margin-bottom:26px}
-.section-head .count{font-family:var(--serif);font-style:italic;font-size:20px;opacity:.5;padding-bottom:10px}
+.section-head .count{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--forest);opacity:.72;padding-bottom:10px}
 .service-list{border-top:1px solid var(--line);position:relative}
 .service-row{
   display:grid;grid-template-columns:90px 1fr auto 60px;align-items:center;gap:clamp(16px,3vw,48px);
@@ -327,13 +331,13 @@ header.on-dark .burger span{background:var(--porcelain)}
 @media(hover:hover){.service-row:hover{padding-left:28px}}
 .service-row .num{font-size:11px;letter-spacing:.3em;opacity:.45;font-weight:500}
 .service-row h3{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3.4vw,52px);line-height:1.1;transition:color .35s}
-.service-row:hover h3{color:var(--sage)}
+.service-row:hover h3{color:var(--forest)}
 .service-row .tag{font-size:11px;letter-spacing:.05em;text-transform:none;opacity:.55;text-align:right}
 .service-row .arr{
   width:44px;height:44px;border:1px solid var(--line);border-radius:50%;
   display:grid;place-items:center;transition:background .4s var(--ease),transform .4s var(--ease),border-color .4s;
 }
-.service-row:hover .arr{background:var(--ink);border-color:var(--ink);transform:rotate(45deg)}
+.service-row:hover .arr{background:var(--forest);border-color:var(--forest);transform:rotate(45deg)}
 .service-row:hover .arr svg path{stroke:var(--porcelain)}
 .service-row .mob-desc{display:none}
 .float-img{
@@ -342,13 +346,13 @@ header.on-dark .burger span{background:var(--porcelain)}
 }
 .float-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}
 .services-foot{margin-top:clamp(34px,5vh,56px);font-size:14.5px;color:var(--ink-soft);opacity:.85}
-.services-foot a{border-bottom:1px solid var(--sage);padding-bottom:2px;color:var(--sage);transition:opacity .3s}
+.services-foot a{border-bottom:1px solid var(--forest);padding-bottom:2px;color:var(--forest);transition:opacity .3s}
 .services-foot a:hover{opacity:.6}
 .float-img img.on{opacity:1}
 
 /* ============ STATEMENT (DARK) ============ */
 .statement{
-  background:var(--ink);color:var(--porcelain);
+  background:var(--deep);color:var(--porcelain);
   padding:clamp(130px,18vh,220px) 0;position:relative;overflow:hidden;
 }
 .statement .eyebrow{color:var(--sage-soft);margin-bottom:48px}
@@ -393,8 +397,8 @@ header.on-dark .burger span{background:var(--porcelain)}
   position:absolute;left:0;top:0;width:1.5px;height:26px;background:var(--line);
   transform-origin:0 0;
 }
-.wtick.major{height:42px;background:rgba(23,20,17,.28)}
-.wtick.fill{background:var(--sage)}
+.wtick.major{height:42px;background:var(--sage-grey)}
+.wtick.fill{background:var(--gold)}
 .wcard{position:absolute;left:50%;top:0;pointer-events:auto;cursor:pointer;transform-origin:top center;will-change:transform}
 .wcard-in{
   width:min(340px,72vw);text-align:center;display:flex;flex-direction:column;gap:14px;align-items:center;
@@ -436,7 +440,7 @@ header.on-dark .burger span{background:var(--porcelain)}
 
 /* ============ SMILE GALLERY (image trail) ============ */
 .gallery{
-  position:relative;background:var(--ink);color:var(--porcelain);
+  position:relative;background:var(--deep);color:var(--porcelain);
   min-height:100svh;display:flex;align-items:center;justify-content:center;
   overflow:hidden;isolation:isolate;
 }
@@ -452,19 +456,11 @@ header.on-dark .burger span{background:var(--porcelain)}
 }
 .gallery-top .eyebrow{color:var(--sage-soft)}
 .gal-word{position:relative;z-index:3;text-align:center;pointer-events:none;padding:0 18px}
-.gal-pos{
-  font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(14px,1.7vw,21px);
-  opacity:.8;margin-bottom:clamp(8px,1.4vh,16px);max-width:30ch;margin-inline:auto;line-height:1.5;
-}
-.gal-pos em{
-  font-style:normal;font-family:var(--sans);font-size:.6em;letter-spacing:.06em;text-transform:none;
-  opacity:.55;margin-right:.85em;vertical-align:middle;
-}
 .gal-term{
-  font-family:var(--serif);font-weight:400;line-height:.96;letter-spacing:-.05em;
-  font-size:clamp(54px,11vw,168px);color:var(--porcelain);
+  font-family:var(--serif);font-weight:400;line-height:.98;letter-spacing:-.035em;
+  font-size:clamp(46px,9.4vw,138px);color:var(--porcelain);
 }
-.gal-term span{color:var(--sage-soft);font-style:italic;padding:0 .04em}
+.gal-term em{font-style:italic;padding-right:.06em}
 .gal-sub{
   margin-top:clamp(18px,3vh,34px);font-size:clamp(13px,1.3vw,15.5px);letter-spacing:.02em;
   opacity:.72;max-width:34ch;margin-inline:auto;line-height:1.7;
@@ -472,7 +468,7 @@ header.on-dark .burger span{background:var(--porcelain)}
 .gal-cta{
   pointer-events:auto;position:relative;z-index:6;margin-top:clamp(28px,4.2vh,44px);
   display:inline-flex;align-items:center;gap:13px;padding:16px 30px;border-radius:999px;
-  border:1px solid rgba(246,243,237,.42);color:var(--porcelain);background:transparent;
+  border:1px solid rgba(245,246,245,.42);color:var(--porcelain);background:transparent;
   font-size:11px;letter-spacing:.06em;text-transform:none;font-weight:600;cursor:pointer;
   transition:background .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease);
 }
@@ -561,7 +557,7 @@ header.on-dark .burger span{background:var(--porcelain)}
 .greview{
   position:fixed;left:clamp(16px,2.4vw,32px);bottom:clamp(16px,2.4vw,32px);z-index:780;
   display:flex;align-items:center;
-  background:rgba(246,243,237,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  background:rgba(245,246,245,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
   border:1px solid var(--line);border-radius:16px;
   transform:translateY(150%);opacity:0;
   transition:transform .6s var(--ease),opacity .6s var(--ease);
@@ -610,12 +606,12 @@ header.on-dark .burger span{background:var(--porcelain)}
 /* ============ TESTIMONIALS ============ */
 .voices{padding:clamp(96px,13vh,170px) 0 clamp(120px,16vh,200px)}
 .voices-inner{
-  background:var(--sage);color:var(--porcelain);border-radius:26px;
+  background:var(--mist);color:var(--ink);border:1px solid var(--line);border-radius:26px;
   padding:clamp(60px,8vw,110px) clamp(28px,6vw,110px);position:relative;overflow:hidden;
 }
 .voices-inner::before{
   content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(120% 80% at 50% 0%, rgba(245,243,242,.10), transparent 60%);
+  background:none;
 }
 .voices .eyebrow{color:var(--sage-soft);justify-content:center;margin-bottom:54px;position:relative}
 .voices .eyebrow::before{display:none}
@@ -632,11 +628,11 @@ header.on-dark .burger span{background:var(--porcelain)}
 .q-stars svg{width:14px;fill:var(--gold)}
 .q-nav{display:flex;justify-content:center;gap:14px;margin-top:48px}
 .q-nav{position:relative;z-index:1}
-.q-dot{width:34px;height:2px;background:var(--porcelain);opacity:.25;transition:opacity .3s;padding:10px 0;background-clip:content-box}
+.q-dot{width:34px;height:2px;background:var(--ink);opacity:.25;transition:opacity .3s;padding:10px 0;background-clip:content-box}
 .q-dot.on{opacity:1}
 
 /* ============ VISIT / CTA ============ */
-.visit{background:var(--ink);color:var(--porcelain);padding:clamp(96px,13vh,170px) 0 clamp(96px,13vh,160px);overflow:hidden}
+.visit{background:var(--deep);color:var(--porcelain);padding:clamp(96px,13vh,170px) 0 clamp(96px,13vh,160px);overflow:hidden}
 .visit-head{max-width:780px;margin-bottom:clamp(44px,7vh,80px)}
 .visit-lead{max-width:540px;margin-top:28px;font-size:15px;line-height:1.9;opacity:.78}
 .visit-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,64px);align-items:stretch}
@@ -650,7 +646,7 @@ header.on-dark .burger span{background:var(--porcelain)}
 }
 .visit-map-pin:hover{transform:translateY(-2px)}
 .visit .eyebrow{color:var(--sage-soft);margin-bottom:34px}
-.visit h2{font-size:clamp(44px,6vw,96px);color:var(--porcelain)}
+.visit h2{font-size:clamp(30px,4vw,56px);color:var(--porcelain);margin-bottom:clamp(34px,5vh,58px)}
 .visit h2 em{color:var(--sage-soft)}
 .visit-cta-row{display:flex;align-items:center;gap:28px;margin-top:50px;flex-wrap:wrap}
 .btn-pill.light{background:var(--porcelain);color:var(--ink)}
@@ -665,8 +661,20 @@ header.on-dark .burger span{background:var(--porcelain)}
 .hours dt{opacity:.55}
 .hours dd{text-align:right;font-variant-numeric:tabular-nums}
 
+/* ============ BOOK / CTA BAND ============ */
+.cta-band{
+  background:var(--forest-deep);color:var(--porcelain);
+  padding:clamp(54px,8vh,90px) 0;text-align:center;position:relative;overflow:hidden;
+}
+.cta-inner{display:flex;flex-direction:column;align-items:center}
+.cta-mark{width:38px;height:auto;stroke:var(--porcelain);fill:none;opacity:.85;margin-bottom:clamp(14px,2.2vh,20px)}
+.cta-title{font-size:clamp(36px,4.6vw,68px);letter-spacing:-.03em}
+.cta-title em{color:var(--sage-soft)}
+.cta-lead{max-width:44ch;margin:clamp(13px,1.9vh,18px) auto 0;font-size:clamp(14px,1.05vw,15.5px);line-height:1.75;opacity:.82}
+.cta-actions{display:flex;align-items:center;justify-content:center;gap:28px;margin-top:clamp(24px,3.4vh,36px);flex-wrap:wrap}
+
 /* footer */
-footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--porcelain)}
+footer{border-top:1px solid var(--line-light);background:var(--deep-ground);color:var(--porcelain)}
 .foot-brand{display:flex;align-items:center;gap:16px}
 .foot-brand svg{width:36px;stroke:var(--porcelain)}
 .foot-brand .brand-name{font-weight:500}
@@ -680,7 +688,7 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
   border:1px solid var(--line-light);font-size:13px;letter-spacing:.02em;color:var(--porcelain);
   transition:border-color .35s var(--ease),background .35s var(--ease);
 }
-.foot-phone:hover{border-color:rgba(246,243,237,.55)}
+.foot-phone:hover{border-color:rgba(245,246,245,.55)}
 .foot-cols{
   display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;
   padding:clamp(40px,6vh,60px) 0;border-top:1px solid var(--line-light);
@@ -764,8 +772,33 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
 
 <!-- ============ PRELOADER ============ -->
 <div id="preloader" aria-hidden="true">
-  <svg class="pre-tooth" viewBox="0 0 64 80"><use href="#toothMark"/></svg>
-  <div class="pre-word" id="preWord"></div>
+  <svg class="pre-emblem" viewBox="261 -4 140 140" fill="currentColor" aria-hidden="true"><g class="pre-ring"><path d="M308.94,125.95c-.7,1.62-2.45,2.28-4.11,1.56-.81-.35-1.42-.93-1.67-1.68l.53-.21c.25.65.72,1.09,1.35,1.36,1.33.58,2.76.03,3.33-1.28.57-1.31-.01-2.72-1.35-3.3-.63-.27-1.27-.31-1.92-.04l-.21-.53c.72-.32,1.57-.29,2.38.06,1.66.72,2.37,2.44,1.67,4.06Z"/>
+          <path d="M290.86,119.16l3.52-4.89.51.37-1.62,2.25,3.06,2.2,1.62-2.25.52.37-3.52,4.89-.52-.37,1.57-2.18-3.06-2.2-1.57,2.18-.51-.37Z"/>
+          <path d="M284.92,105.85l.41-.37,2.85,3.16-4.47,4.03-2.77-3.07.41-.37,2.34,2.59,1.59-1.43-2.09-2.31.4-.36,2.09,2.31,1.66-1.5-2.43-2.69Z"/>
+          <path d="M277.22,96.33l1.68,2.9,1.75-.18.33.57-6.59.63-.31-.54,3.83-5.4.34.58-1.03,1.43ZM276.89,96.79l-2.07,2.87,3.52-.37-1.45-2.5Z"/>
+          <path d="M267.31,83.24l5.75-1.77.18.58-4.6,1.42,4.57,1.07.09.29-3.15,3.45,4.58-1.41.18.58-5.75,1.77-.15-.5,3.5-3.81-5.03-1.16-.15-.5Z"/>
+          <path d="M265.73,58.7l5.8,3.13-.05.63-6.21,2.19.05-.69,5.39-1.89-5.03-2.72.05-.64Z"/>
+          <path d="M267.41,50.21l.16-.62,5.83,1.53-.16.62-5.82-1.53Z"/>
+          <path d="M270.63,40.67l.26-.58,4.98,2.26,1.39-3.07.5.23-1.66,3.65-5.48-2.49Z"/>
+          <path d="M276.72,29.5l.37-.52,4.46,3.17,1.96-2.75.45.32-2.33,3.27-4.91-3.49Z"/>
+          <path d="M290.99,19.99l-2.47,2.27.55,1.67-.49.45-2.04-6.3.46-.42,6.1,2.58-.49.45-1.62-.7ZM290.47,19.77l-3.25-1.41,1.12,3.36,2.13-1.96Z"/>
+          <path d="M301.14,11.21l.53-.31,1.17,1.98c-.23.73-.8,1.36-1.52,1.78-1.58.93-3.39.49-4.29-1.03-.9-1.52-.4-3.32,1.19-4.25.79-.46,1.62-.61,2.37-.39l-.14.55c-.69-.17-1.31-.04-1.92.31-1.28.76-1.69,2.22-.96,3.46.72,1.23,2.21,1.6,3.48.84.5-.29.89-.67,1.12-1.2l-1.03-1.75Z"/>
+          <path d="M314.56,8.25l.18.52-4.03,1.36-1.92-5.71,3.91-1.32.18.52-3.31,1.11.68,2.03,2.95-.99.17.51-2.95.99.71,2.12,3.43-1.15Z"/>
+          <path d="M331.58,0h.57s-.02,8.05-.02,8.05h-.57s.02-8.05.02-8.05Z"/>
+          <path d="M351.4,3.32l2.31.82c1.82.64,2.63,2.24,2.04,3.91-.59,1.67-2.23,2.41-4.04,1.76l-2.31-.82,2-5.68ZM351.86,9.28c1.51.53,2.82-.08,3.3-1.44s-.15-2.66-1.66-3.19l-1.68-.59-1.64,4.64,1.68.59Z"/>
+          <path d="M365.75,16.19l-.29.47-3.62-2.24,3.17-5.13,3.51,2.17-.29.47-2.97-1.84-1.13,1.82,2.65,1.64-.29.46-2.65-1.64-1.18,1.9,3.08,1.91Z"/>
+          <path d="M379.43,20.55l-4.17,4.34-.38-.36.59-6.21-3.38,3.53-.46-.44,4.17-4.34.38.36-.59,6.21,3.38-3.53.45.43Z"/>
+          <path d="M385.83,29.3l-1.2-1.75.45-.31,2.75,4.02-.45.31-1.2-1.75-4.51,3.09-.36-.53,4.51-3.09Z"/>
+          <path d="M389.19,43.59l-1.34-3.07-1.76-.02-.26-.61,6.62.12.25.58-4.42,4.92-.27-.62,1.19-1.3ZM389.57,43.17l2.39-2.61-3.54-.04,1.15,2.65Z"/>
+          <path d="M396.32,51.47l.13.62-5.35,1.14.7,3.3-.54.11-.84-3.92,5.89-1.25Z"/>
+          <path d="M392.54,72.71l.45.31c-.48.37-.89,1.09-.99,1.87-.15,1.12.25,1.67.84,1.75,1.64.22,1.13-3.59,3.34-3.29.88.12,1.54.9,1.34,2.42-.09.67-.38,1.35-.78,1.78l-.47-.28c.4-.47.65-1.04.72-1.57.15-1.09-.27-1.64-.87-1.72-1.64-.22-1.15,3.58-3.32,3.29-.88-.12-1.53-.92-1.32-2.45.12-.9.56-1.73,1.08-2.11Z"/>
+          <path d="M394.08,87.78l.68-2,.52.18-1.57,4.61-.52-.18.68-2-5.18-1.77.21-.6,5.18,1.77Z"/>
+          <path d="M387.09,96.73l2.97,1.76-.32.55-2.95-1.74c-1.23-.73-2.13-.48-2.73.52-.6,1.01-.38,1.92.85,2.65l2.95,1.74-.32.53-2.97-1.76c-1.49-.88-1.78-2.14-1-3.46.78-1.32,2.03-1.68,3.52-.8Z"/>
+          <path d="M381.72,110.47l-1.68,1.78c-1.32,1.4-3.12,1.49-4.4.27-1.29-1.22-1.29-3.01.03-4.41l1.69-1.78,4.37,4.14ZM376.09,108.47c-1.1,1.16-1.07,2.61-.02,3.6,1.05.99,2.5.94,3.6-.22l1.22-1.29-3.57-3.38-1.22,1.29Z"/>
+          <path d="M370.79,120.39l-.52.37-3.52-4.89.52-.37,3.52,4.89Z"/>
+          <path d="M361.29,122.87c.74,1.59.08,3.34-1.58,4.11-1.64.76-3.41.16-4.16-1.44-.74-1.6-.07-3.35,1.57-4.11,1.65-.77,3.42-.15,4.16,1.44ZM356.13,125.27c.61,1.3,2.03,1.81,3.34,1.2,1.32-.61,1.85-2.03,1.25-3.33-.61-1.3-2.04-1.8-3.35-1.19-1.31.61-1.84,2.02-1.23,3.33Z"/>
+          <path d="M347.46,125.82l-.13.53c-.51-.32-1.33-.45-2.1-.27-1.1.25-1.47.82-1.34,1.4.37,1.61,3.75-.21,4.25,1.97.2.86-.3,1.76-1.79,2.1-.66.15-1.39.12-1.94-.1l.1-.54c.58.21,1.2.24,1.72.12,1.07-.25,1.44-.83,1.31-1.42-.37-1.61-3.76.19-4.25-1.95-.2-.86.32-1.76,1.82-2.1.88-.2,1.81-.09,2.35.26Z"/>
+          <path d="M331.65,133.51h-.57s.04-8.06.04-8.06h.57s-.04,8.06-.04,8.06Z"/></g><g class="pre-toothmark"><path d="M342.1,56.27c-2.04-3.86-6.43-5.2-10.41-3.26-3.98-1.94-8.36-.6-10.41,3.26-1.49,2.82-1.17,5.92.62,8.24l4.15,16.58,1.61.28,4.02-6.03,4.02,6.03,1.61-.28,4.15-16.58c1.78-2.33,2.11-5.42.62-8.24ZM322.69,57.02c1.49-2.81,4.54-4,7.47-3.07-1.32,1-2.26,2.3-2.65,3.8l1.38.43c.46-1.59,1.43-2.72,2.79-3.53,1.36.81,2.33,1.94,2.79,3.53l1.38-.43c-.39-1.5-1.33-2.8-2.65-3.8,2.93-.93,5.98.25,7.47,3.07,1.69,3.2.51,6.88-2.75,8.61-1.54.82-3.14,1.05-4.83.51l-.43,1.38c.65.23,1.33.35,2.02.36l-3.01,4.53-3.01-4.53c.69-.01,1.37-.13,2.02-.36l-.43-1.38c-1.69.54-3.29.3-4.83-.51-3.26-1.72-4.44-5.41-2.75-8.61ZM327.18,79.2l-3.21-12.77c.24.16.49.31.75.45.59.31,1.19.54,1.79.71l4.2,6.29-3.53,5.31ZM336.21,79.2l-3.53-5.31,4.2-6.29c.6-.17,1.2-.4,1.79-.71.26-.14.51-.29.75-.45l-3.21,12.77Z"/></g></svg>
   <div class="pre-count" id="preCount">0</div>
 </div>
 
@@ -773,8 +806,35 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
 <header id="siteHeader">
   <div class="wrap nav">
     <a href="#top" class="brand" aria-label="Cheam Village Dental Studios, home">
-      <svg viewBox="0 0 64 80" style="stroke:currentColor"><use href="#toothMark"/></svg>
-      <span class="brand-name">Cheam Village<small>Dental Studios</small></span>
+      <svg class="brand-logo" viewBox="-2 48 203 37" fill="currentColor" role="img" aria-label="Cheam Village Dental Studios"><g>
+        <path d="M165.11,75.35h.76v7.52h-.76v-7.52Z"/>
+        <g>
+          <path d="M0,54.41c0-2.21,1.6-3.84,3.77-3.84,1.05,0,2,.37,2.63,1.1l-.48.51c-.59-.63-1.31-.9-2.13-.9-1.74,0-3.04,1.34-3.04,3.13s1.3,3.13,3.04,3.13c.82,0,1.54-.27,2.13-.91l.48.51c-.64.73-1.58,1.11-2.64,1.11-2.16,0-3.76-1.63-3.76-3.84Z"/>
+          <path d="M23.32,50.63v7.56h-.75v-3.49h-4.5v3.49h-.76v-7.56h.76v3.37h4.5v-3.37h.75Z"/>
+          <path d="M40.03,57.5v.69h-5.09v-7.56h4.94v.69h-4.17v2.69h3.72v.68h-3.72v2.81h4.33Z"/>
+          <path d="M55.99,56.17h-4.01l-.86,2.02h-.79l3.29-7.56h.75l3.29,7.56h-.8l-.86-2.02ZM55.71,55.53l-1.73-4.06-1.73,4.06h3.45Z"/>
+          <path d="M75.71,50.63v7.56h-.73v-6.05l-2.83,5.09h-.36l-2.83-5.05v6.02h-.73v-7.56h.63l3.13,5.61,3.09-5.61h.63Z"/>
+          <path d="M105.26,50.63l-3.19,7.56h-.75l-3.19-7.56h.82l2.76,6.57,2.78-6.57h.77Z"/>
+          <path d="M115.85,50.63h.76v7.56h-.76v-7.56Z"/>
+          <path d="M128.22,50.63h.76v6.87h4.03v.69h-4.79v-7.56Z"/>
+          <path d="M143.63,50.63h.76v6.87h4.03v.69h-4.79v-7.56Z"/>
+          <path d="M164.09,56.17h-4.01l-.86,2.02h-.79l3.29-7.56h.75l3.29,7.56h-.8l-.86-2.02ZM163.81,55.53l-1.73-4.06-1.73,4.06h3.45Z"/>
+          <path d="M181.17,54.41h.73v2.88c-.68.64-1.65.96-2.64.96-2.19,0-3.79-1.63-3.79-3.84s1.6-3.84,3.8-3.84c1.09,0,2.04.37,2.67,1.09l-.47.51c-.61-.63-1.33-.88-2.17-.88-1.78,0-3.09,1.33-3.09,3.13s1.31,3.13,3.08,3.13c.69,0,1.33-.16,1.88-.58v-2.55Z"/>
+          <path d="M198.43,57.5v.69h-5.09v-7.56h4.94v.69h-4.17v2.69h3.72v.68h-3.72v2.81h4.33Z"/>
+          <path d="M.54,75.35h2.92c2.29,0,3.83,1.55,3.83,3.76s-1.54,3.76-3.83,3.76H.54v-7.52ZM3.42,82.19c1.9,0,3.13-1.27,3.13-3.07s-1.23-3.07-3.13-3.07H1.3v6.15h2.12Z"/>
+          <path d="M22.36,82.19v.69h-5.06v-7.52h4.91v.69h-4.15v2.67h3.7v.68h-3.7v2.79h4.31Z"/>
+          <path d="M38.16,75.35v7.52h-.62l-4.6-6.1v6.1h-.76v-7.52h.62l4.61,6.1v-6.1h.75Z"/>
+          <path d="M50.19,76.04h-2.52v-.69h5.79v.69h-2.52v6.83h-.76v-6.83Z"/>
+          <path d="M66.81,80.86h-3.99l-.86,2.01h-.79l3.27-7.52h.75l3.27,7.52h-.8l-.86-2.01ZM66.54,80.22l-1.72-4.04-1.72,4.04h3.44Z"/>
+          <path d="M77.98,75.35h.76v6.83h4.01v.69h-4.77v-7.52Z"/>
+          <path d="M102.37,81.96l.3-.61c.51.53,1.42.91,2.36.91,1.34,0,1.92-.59,1.92-1.33,0-2.06-4.41-.8-4.41-3.58,0-1.11.82-2.06,2.64-2.06.81,0,1.65.25,2.22.66l-.26.64c-.61-.42-1.33-.62-1.96-.62-1.31,0-1.89.61-1.89,1.36,0,2.06,4.41.82,4.41,3.56,0,1.11-.84,2.05-2.67,2.05-1.07,0-2.13-.4-2.66-.98Z"/>
+          <path d="M119.22,76.04h-2.52v-.69h5.79v.69h-2.52v6.83h-.76v-6.83Z"/>
+          <path d="M131.97,79.66v-4.31h.76v4.27c0,1.78.8,2.6,2.19,2.6s2.2-.82,2.2-2.6v-4.27h.74v4.31c0,2.16-1.1,3.27-2.94,3.27s-2.95-1.12-2.95-3.27Z"/>
+          <path d="M148.35,75.35h2.92c2.29,0,3.83,1.55,3.83,3.76s-1.54,3.76-3.83,3.76h-2.92v-7.52ZM151.22,82.19c1.9,0,3.13-1.27,3.13-3.07s-1.23-3.07-3.13-3.07h-2.12v6.15h2.12Z"/>
+          <path d="M175.86,79.11c0-2.19,1.6-3.82,3.76-3.82s3.75,1.62,3.75,3.82-1.61,3.82-3.75,3.82-3.76-1.63-3.76-3.82ZM182.62,79.11c0-1.79-1.28-3.11-3-3.11s-3.02,1.32-3.02,3.11,1.29,3.11,3.02,3.11,3-1.32,3-3.11Z"/>
+          <path d="M192.7,81.96l.3-.61c.51.53,1.42.91,2.36.91,1.34,0,1.92-.59,1.92-1.33,0-2.06-4.41-.8-4.41-3.58,0-1.11.82-2.06,2.64-2.06.81,0,1.65.25,2.22.66l-.26.64c-.61-.42-1.33-.62-1.96-.62-1.31,0-1.89.61-1.89,1.36,0,2.06,4.41.82,4.41,3.56,0,1.11-.84,2.05-2.67,2.05-1.07,0-2.13-.4-2.66-.98Z"/>
+        </g>
+      </g></svg>
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#studio">Studio</a>
@@ -784,7 +844,7 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
       <a href="#voices">Patients</a>
       <a href="#visit">Visit</a>
     </nav>
-    <a class="nav-cta" href="#visit">Book a consultation</a>
+    <a class="nav-cta" href="#book">Book a consultation</a>
     <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -819,7 +879,7 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
         </h1>
         <p class="hero-sub" data-fade>An independent, boutique dental studio in the heart of Cheam Village. Warm, unhurried and considered. The whole family, looked after beautifully.</p>
         <div class="hero-actions" data-fade>
-          <a class="btn-pill" href="#visit">
+          <a class="btn-pill" href="#book">
             <span>Book a consultation</span>
             <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="currentColor" stroke-width="1.4"/></svg>
           </a>
@@ -880,7 +940,7 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
         </h2>
         <div class="expand-foot">
           <div class="expand-tags"><span>Invisalign®</span><span>Implants</span><span>Whitening</span><span>Bonding</span></div>
-          <a class="btn-pill light" href="#visit">
+          <a class="btn-pill light" href="#book">
             <span>Book a consultation</span>
             <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="currentColor" stroke-width="1.4"/></svg>
           </a>
@@ -939,32 +999,32 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
         <span class="count" data-fade>( 04 )</span>
       </div>
       <div class="service-list" id="serviceList">
-        <a class="service-row" href="#visit" data-img="images/hero-invisalign.jpg">
+        <a class="service-row" href="#book" data-img="images/hero-invisalign.jpg">
           <span class="num">01</span>
           <h3>Clear aligners</h3>
           <span class="tag">Teeth straightening</span>
-          <span class="arr"><svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="#1A1C15" stroke-width="1.3"/></svg></span>
+          <span class="arr"><svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="#14201F" stroke-width="1.3"/></svg></span>
           <p class="mob-desc">Near-invisible Invisalign® aligners that gently straighten teeth, on your schedule.</p>
         </a>
-        <a class="service-row" href="#visit" data-img="images/ba-bonding.jpg">
+        <a class="service-row" href="#book" data-img="images/ba-bonding.jpg">
           <span class="num">02</span>
           <h3>Dental implants</h3>
           <span class="tag">Replace missing teeth</span>
-          <span class="arr"><svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="#1A1C15" stroke-width="1.3"/></svg></span>
+          <span class="arr"><svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="#14201F" stroke-width="1.3"/></svg></span>
           <p class="mob-desc">Natural-looking, lifelong replacements for missing or failing teeth.</p>
         </a>
-        <a class="service-row" href="#visit" data-img="images/hero-whitening.jpg">
+        <a class="service-row" href="#book" data-img="images/hero-whitening.jpg">
           <span class="num">03</span>
           <h3>Smile makeover</h3>
           <span class="tag">Veneers, bonding &amp; whitening</span>
-          <span class="arr"><svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="#1A1C15" stroke-width="1.3"/></svg></span>
+          <span class="arr"><svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="#14201F" stroke-width="1.3"/></svg></span>
           <p class="mob-desc">A considered plan to reshape, brighten and perfect your whole smile.</p>
         </a>
-        <a class="service-row" href="#visit" data-img="images/ba-whitening.jpg">
+        <a class="service-row" href="#book" data-img="images/ba-whitening.jpg">
           <span class="num">04</span>
           <h3>Teeth whitening</h3>
           <span class="tag">Brighter in days</span>
-          <span class="arr"><svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="#1A1C15" stroke-width="1.3"/></svg></span>
+          <span class="arr"><svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="#14201F" stroke-width="1.3"/></svg></span>
           <p class="mob-desc">Safe, dentist-led whitening tailored to you, for a natural, brighter smile.</p>
         </a>
       </div>
@@ -1059,8 +1119,7 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
   <section class="gallery static" id="gallery" aria-label="Smile gallery, before and after">
     <div class="gallery-stage" id="galStage">
       <div class="gal-word" data-fade>
-        <p class="gal-pos"><em>noun</em>the quiet certainty of a smile you no longer think about.</p>
-        <h2 class="gal-term">con<span>·</span>fi<span>·</span>dence</h2>
+        <h2 class="gal-term"><em>smile</em> gallery</h2>
         <p class="gal-sub">Before, and after. Real smiles, quietly transformed in the studio.</p>
       </div>
     </div>
@@ -1101,20 +1160,26 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
     </div>
   </section>
 
+  <!-- ============ BOOK / CTA ============ -->
+  <section class="cta-band" id="book">
+    <div class="wrap cta-inner">
+      <svg class="cta-mark" viewBox="0 0 64 80" aria-hidden="true"><use href="#toothMark"/></svg>
+      <h2 class="cta-title h-display" data-lines>Begin with a <em>hello.</em></h2>
+      <p class="cta-lead" data-fade>New patient consultations include a full examination, digital X-rays and an unhurried conversation about what you'd like, from £75, fully refundable against treatment.</p>
+      <div class="cta-actions" data-fade>
+        <a class="btn-pill light" href="mailto:hello@cheamvillagedental.co.uk?subject=New%20patient%20consultation">
+          <span>Book a consultation</span>
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="currentColor" stroke-width="1.4"/></svg>
+        </a>
+        <a class="link-ul" style="border-color:var(--porcelain)" href="tel:+442086420000">020 8642 0000</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ VISIT ============ -->
   <section class="visit" id="visit">
     <div class="wrap">
-      <div class="visit-head">
-        <h2 class="h-display" data-lines>Begin with a <em>hello.</em></h2>
-        <p class="visit-lead" data-fade>New patient consultations include a full examination, digital X-rays and an unhurried conversation about what you'd like, from £75, fully refundable against treatment.</p>
-        <div class="visit-cta-row" data-fade>
-          <a class="btn-pill light" href="mailto:hello@cheamvillagedental.co.uk?subject=New%20patient%20consultation">
-            <span>Book a consultation</span>
-            <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="currentColor" stroke-width="1.4"/></svg>
-          </a>
-          <a class="link-ul" style="border-color:var(--porcelain)" href="tel:+442086420000">020 8642 0000</a>
-        </div>
-      </div>
+      <h2 class="h-display" data-lines>Find the <em>studio.</em></h2>
       <div class="visit-grid">
         <div class="visit-map" data-fade>
           <iframe title="Map showing Cheam Village Dental Studios on The Broadway, Cheam Village, Surrey" src="https://www.openstreetmap.org/export/embed.html?bbox=-0.2247%2C51.3551%2C-0.2047%2C51.3651&layer=mapnik&marker=51.3601%2C-0.2147" loading="lazy"></iframe>
@@ -1153,7 +1218,7 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
           </div>
           <div class="foot-actions">
             <a class="foot-phone" href="tel:+442086420000">020 8642 0000</a>
-            <a class="btn-pill light" href="#visit">
+            <a class="btn-pill light" href="#book">
               <span>Book a consultation</span>
               <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M1 11 L11 1 M3 1h8v8" stroke="currentColor" stroke-width="1.4"/></svg>
             </a>
@@ -1293,11 +1358,7 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
 
   /* ---------- preloader ---------- */
   document.body.style.overflow='hidden';
-  var word = document.getElementById('preWord');
-  'CHEAM VILLAGE'.split('').forEach(function(ch){
-    var s=document.createElement('span'); s.textContent=ch===' '?' ':ch; word.appendChild(s);
-  });
-  var toothPaths = pre.querySelectorAll('use');
+  var preRing = pre.querySelector('.pre-ring');
   var count={v:0}, countEl=document.getElementById('preCount');
 
   var heroTitle = document.getElementById('heroTitle');
@@ -1306,21 +1367,17 @@ footer{border-top:1px solid var(--line-light);background:var(--ink);color:var(--
   var tl = gsap.timeline({
     defaults:{ease:'power3.out'},
     onComplete:function(){
+      if(pre._ringSpin){ pre._ringSpin.kill(); }
       pre.style.display='none';
       document.body.style.overflow='';
       ScrollTrigger.refresh();
     }
   });
 
-  /* draw the tooth */
-  var preTooth = pre.querySelector('.pre-tooth use');
-  tl.set('.pre-tooth', {opacity:1});
-  /* animate stroke via dash on the <use>'s referenced geometry: animate whole svg paths through CSS vars instead */
-  document.querySelectorAll('#preloader .pre-tooth').forEach(function(svg){
-    svg.style.strokeDasharray='260'; svg.style.strokeDashoffset='260';
-  });
-  tl.to('#preloader .pre-tooth', {strokeDashoffset:0, duration:1.4, ease:'power2.inOut'}, 0)
-    .to('#preWord span', {opacity:1, y:0, duration:.7, stagger:.04}, .35)
+  /* emblem reveal + endless ring spin around the tooth */
+  var ringSpin = (preRing && !reduced) ? gsap.to(preRing, {rotation:360, svgOrigin:'331 66.75', duration:13, ease:'none', repeat:-1}) : null;
+  pre._ringSpin = ringSpin;
+  tl.fromTo('.pre-emblem', {opacity:0, scale:.82}, {opacity:1, scale:1, duration:1.1, ease:'power3.out'}, 0)
     .to(count, {v:100, duration:1.5, ease:'power2.inOut', onUpdate:function(){ countEl.textContent=Math.round(count.v); }}, 0)
     .to('#preloader', {clipPath:'inset(0 0 100% 0)', duration:1, ease:'power4.inOut'}, 1.9)
     /* hero entrance */
